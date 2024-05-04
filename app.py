@@ -73,12 +73,10 @@ def create_blog():
 @app.route('/blogs')
 def blogs():
     id = request.args.get('id', '1')  # Default id is set to '1'
-    print("ID:", id)  # For debugging
     conn = get_db_connection()
-    cursor = conn.execute('SELECT * FROM blogs WHERE id = '+ id)
+    cursor = conn.execute('SELECT * FROM blogs WHERE id = ?', (id,))
     blog = cursor.fetchone()
     conn.close()
-    print("Blog:", blog)  # For debugging
     return render_template('blogs.html', blog=blog)
 
 

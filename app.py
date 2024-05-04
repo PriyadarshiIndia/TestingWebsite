@@ -70,12 +70,11 @@ def create_blog():
     return render_template('create_blog.html')
 
 # Route for the blogs page (vulnerable to SQL injection)
-@app.route('/blogs')
-def blogs():
-    id = request.args.get('id', '1')  # Default id is set to '1'
+@app.route('/blogs/<int:id>')
+def blogs(id):
     print("ID:", id)  # For debugging
     conn = get_db_connection()
-    cursor = conn.execute('SELECT * FROM blogs WHERE id = '+ id)
+    cursor = conn.execute('SELECT * FROM blogs WHERE id = ?', (id,))
     blog = cursor.fetchone()
     conn.close()
     print("Blog:", blog)  # For debugging

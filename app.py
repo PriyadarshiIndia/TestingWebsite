@@ -4,11 +4,11 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
-# Function to create a connection to the SQLite database
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
+
 # Create users table (insert this code before any route definitions)
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
@@ -75,7 +75,7 @@ def blogs():
     id = request.args.get('id', '1')  # Default id is set to '1'
     print("ID:", id)  # For debugging
     conn = get_db_connection()
-    cursor = conn.execute('SELECT * FROM blogs WHERE id = '+ id)
+    cursor = conn.execute('SELECT * FROM blogs WHERE id = ?', (id,))
     blog = cursor.fetchone()
     conn.close()
     print("Blog:", blog)  # For debugging

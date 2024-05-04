@@ -4,35 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Blog</title>
+    <title>Malaai-Blog</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% block css %}
+    {% endblock %}
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Flask Blog</a>
+        <a class="navbar-brand pl-4 text-dark" href="/" style="font-size: 26px;">Malaai-Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark pr-4" href="/blogs" style="font-size: 24px;">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark pl-4" href="/create_blog" style="font-size: 24px;">Create Blog</a>
+                </li>
+            </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/blogs?id=1">Blogs</a>
+                    <a class="nav-link text-dark" href="/login" style="font-size: 24px;">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link text-dark" href="/register" style="font-size: 24px;">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <!-- Add this link to the navbar in base.html -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/create_blog">Create Blog</a>
-                </li>
-
             </ul>
         </div>
+        
     </nav>
-    <div class="container mt-4">
+    <div class="container mt-4" style="width: 90%;">
         {% block content %}
         {% endblock %}
     </div>

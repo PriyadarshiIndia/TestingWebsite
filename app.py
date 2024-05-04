@@ -75,7 +75,7 @@ def blogs():
     id = request.args.get('id', '1')  # Default id is set to '1'
     print("ID:", id)  # For debugging
     conn = get_db_connection()
-    cursor = conn.execute('SELECT * FROM blogs WHERE id = '+ id)
+    cursor = conn.execute('SELECT * FROM blogs WHERE id = ?', (id,))
     blog = cursor.fetchone()
     conn.close()
     print("Blog:", blog)  # For debugging
@@ -86,4 +86,4 @@ def blogs():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)<g4f.providers.types.FinishReason object at 0x7f1aa85677d0>
